@@ -214,22 +214,30 @@
         </div>
 
         <!-- Step 4: Shared Memory -->
-        <div id="step-4" class="step-content flex-col items-center text-center max-w-2xl">
-            <h2 class="text-4xl font-bold mb-8 text-gradient">That One Special Moment…</h2>
-            <div class="polaroid-container mb-8">
-                <div class="polaroid glass-card" id="memory-card">
-                    <img src="https://i.ibb.co/6Z6XgCg/crush.webp" alt="Our Memory" class="w-64 h-64 object-cover mb-4 grayscale hover:grayscale-0 transition-all duration-700">
-                    <p class="font-handwriting text-gray-800 text-xl font-medium">Our favorite memory. ✨</p>
+          <div id="step-3" class="step-content flex-col items-center text-center max-w-4xl">
+            <h2 class="text-4xl font-bold mb-10 text-gradient">Every moment with you feels like a beautiful dream I never want to wake from</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="glass-card p-8 rounded-3xl flex flex-col items-center">
+                    <span class="text-3xl mb-4">✨</span>
+                    <h3 class="text-xl font-bold mb-2">Mon Amour</h3>
+                    <p class="text-sm text-gray-400">tout en toi rend mon monde plus lumineux.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl flex flex-col items-center md:mt-8">
+                    <span class="text-3xl mb-4">😊</span>
+                    <h3 class="text-xl font-bold mb-2">Ma chérie</h3>
+                    <p class="text-sm text-gray-400">Chaque jour avec toi, je découvre ta beauté.</p>
+                </div>
+                <div class="glass-card p-8 rounded-3xl flex flex-col items-center">
+                    <span class="text-3xl mb-4">🌟</span>
+                    <h3 class="text-xl font-bold mb-2">Ma douce</h3>
+                    <p class="text-sm text-gray-400">pas seulement à l’extérieur, mais dans la lumière de ton cœur</p>
                 </div>
             </div>
-            <p class="text-lg text-gray-300 mb-8 px-4">
-                Every moment with you is like a scene from a movie I never want to end.
-            </p>
-            <button onclick="nextStep(5)" class="btn-primary px-10 py-4 rounded-full font-bold text-white uppercase tracking-widest text-sm">
-                One last thing…
+            <button onclick="nextStep(4)" class="btn-primary px-10 py-4 rounded-full font-bold text-white uppercase tracking-widest text-sm">
+                Mage pana 
             </button>
         </div>
-
+      
         <!-- Step 5: Finale -->
         <div id="step-5" class="step-content flex-col items-center text-center max-w-2xl">
             <div class="text-6xl mb-6">🎂</div>
@@ -417,4 +425,5 @@
         gsap.to('.active-step', { opacity: 1, y: 0, duration: 1 });
     </script>
 </body>
+
 </html>
