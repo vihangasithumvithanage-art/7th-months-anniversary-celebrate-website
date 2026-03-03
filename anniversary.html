@@ -214,9 +214,9 @@
         </div>
 
         <!-- Step 4: Shared Memory -->
-          <div id="step-3" class="step-content flex-col items-center text-center max-w-4xl">
+        <div id="step-4" class="step-content flex-col items-center text-center max-w-4xl">
             <h2 class="text-4xl font-bold mb-10 text-gradient">Every moment with you feels like a beautiful dream I never want to wake from</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div id="memory-card" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 <div class="glass-card p-8 rounded-3xl flex flex-col items-center">
                     <span class="text-3xl mb-4">✨</span>
                     <h3 class="text-xl font-bold mb-2">Mon Amour</h3>
@@ -233,11 +233,11 @@
                     <p class="text-sm text-gray-400">pas seulement à l’extérieur, mais dans la lumière de ton cœur</p>
                 </div>
             </div>
-            <button onclick="nextStep(4)" class="btn-primary px-10 py-4 rounded-full font-bold text-white uppercase tracking-widest text-sm">
+            <button onclick="nextStep(5)" class="btn-primary px-10 py-4 rounded-full font-bold text-white uppercase tracking-widest text-sm">
                 Mage pana 
             </button>
         </div>
-      
+
         <!-- Step 5: Finale -->
         <div id="step-5" class="step-content flex-col items-center text-center max-w-2xl">
             <div class="text-6xl mb-6">🎂</div>
@@ -267,7 +267,6 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-            // Create Heart Shape
             const x = 0, y = 0;
             const heartShape = new THREE.Shape();
             heartShape.moveTo(x + 5, y + 5);
@@ -280,7 +279,6 @@
 
             const geometry = new THREE.ExtrudeGeometry(heartShape, { depth: 2, bevelEnabled: true, bevelThickness: 1, bevelSize: 1 });
             
-            // Generate 25 Hearts
             for (let i = 0; i < 25; i++) {
                 const material = new THREE.MeshPhongMaterial({ 
                     color: Math.random() > 0.5 ? 0xf472b6 : 0xe11d48,
@@ -295,9 +293,8 @@
                     (Math.random() - 0.5) * 50 - 50
                 );
                 heart.scale.set(0.2, 0.2, 0.2);
-                heart.rotation.x = Math.PI; // Flip it right way up
+                heart.rotation.x = Math.PI;
                 
-                // Custom properties for animation
                 heart.userData = {
                     speed: 0.01 + Math.random() * 0.02,
                     rotSpeed: Math.random() * 0.01,
@@ -339,6 +336,7 @@
         function nextStep(step) {
             const currentEl = document.getElementById(`step-${currentStep}`);
             const nextEl = document.getElementById(`step-${step}`);
+            if (!nextEl) return;
             
             gsap.to(currentEl, {
                 opacity: 0,
@@ -385,28 +383,21 @@
                 gsap.from(finalMsg, { opacity: 0, y: 20, duration: 1 });
             }});
 
-            // Confetti Explosion
             const duration = 5 * 1000;
             const animationEnd = Date.now() + duration;
             const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
             const interval = setInterval(function() {
                 const timeLeft = animationEnd - Date.now();
-
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
+                if (timeLeft <= 0) return clearInterval(interval);
 
                 const particleCount = 50 * (timeLeft / duration);
                 confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
                 confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
             }, 250);
 
-            // Swirl 3D hearts away
             hearts.forEach((heart, i) => {
                 gsap.to(heart.position, {
                     x: (Math.random() - 0.5) * 200,
@@ -425,5 +416,4 @@
         gsap.to('.active-step', { opacity: 1, y: 0, duration: 1 });
     </script>
 </body>
-
 </html>
